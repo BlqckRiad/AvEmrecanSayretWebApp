@@ -42,26 +42,25 @@ const services = [
   },
   {
     title: 'Şirketler ve Ticaret Hukuku',
-    description: 'Burayı bir yazı ayarla.',
+    description: 'Şirket kuruluşları, ticari sözleşmeler ve ortaklık yapıları konusunda uzman hukuki danışmanlık sunuyoruz.',
     details: [
       'Şirket kuruluş ve sözleşmeleri',
-      'Hissedar ve ortalıklık sözleşmeleri',      
+      'Hissedar ve ortaklık sözleşmeleri',      
       'Ticari uyuşmazlık ve alacak davaları',      
     ]
   },
   {
     title: 'Sözleşme Hukuku',
-    description: 'Buraya bir yazı ayarla.',
+    description: 'Bireysel ve ticari sözleşmelerin hazırlanması, incelenmesi ve uyuşmazlıkların çözümü konusunda destek veriyoruz.',
     details: [
       'Ticari sözleşmelerin hazırlanması ve incelenmesi',
       'Sözleşme ihlalleri ve fesih süreçleri',
       'Alacak tahsili ve icra işlemleri',
-      
     ]
   },
   {
     title: 'Yabancılar ve Vatandaşlık Hukuku',
-    description: 'Buraya bir yazı ayarla.',
+    description: 'Yabancılar için oturma, çalışma izni ve vatandaşlık başvuruları süreçlerinde hukuki rehberlik sağlıyoruz.',
     details: [
       'Oturma izni ve çalışma izni başvuruları',
       'Vatandaşlık başvuruları ve süreçleri',
@@ -70,7 +69,7 @@ const services = [
   },
   {
     title: 'Uluslararası Ticaret Hukuku',
-    description: 'Buraya bir yazı ayarla.',
+    description: 'Uluslararası yatırımlar, ticari işlemler ve gümrük mevzuatına ilişkin hukuki danışmanlık sağlıyoruz.',
     details: [
       'Yabancı yatırım ve şirket açılışları',
       'Uluslararası ticaret sözleşmeleri',
@@ -79,13 +78,13 @@ const services = [
   },
   {
     title: 'Fikri Mülkiyet Hukuku',
-    description: 'Buraya bir yazı ayarla.',
+    description: 'Marka, patent, tasarım tescili ve telif hakları alanında hukuki destek sunuyoruz.',
     details: [
       'Marka, patent ve tasarım tescil başvuruları',
       'Telif hakkı ihlalleri ve tazminat talepleri',
       'Lisanslama ve yetkilendirme işlemleri',
     ]
-  },
+  }
 ];
 
 export default function ServicesPage() {
