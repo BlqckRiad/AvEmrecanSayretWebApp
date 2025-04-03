@@ -85,7 +85,7 @@ export default function ContactPage() {
               <div className="contact-detail">
                 <span>✉️</span>
                 <a href="mailto:emrecansayret@gmail.com" className="text-white hover:opacity-80">
-                  emrecansayret@gmail.com
+                  emrecan.sayret@gmail.com
                 </a>
               </div>
               <div className="contact-detail">

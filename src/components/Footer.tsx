@@ -12,7 +12,7 @@ export default function Footer() {
             </p>
             <div className="footer-contact">
               <p>📞 0555 015 3160</p>
-              <p>✉️ emrecansayret@gmail.com</p>
+              <p>✉️ emrecan.sayret@gmail.com</p>
               <p>📍 Sultanbeyli/İSTANBUL</p>
             </div>
           </div>
