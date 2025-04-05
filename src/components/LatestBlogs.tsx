@@ -2,15 +2,34 @@
 
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
 
-const LatestBlogs = async () => {
-  const { data: posts } = await supabase
-    .from('blog')
-    .select('*')
-    .eq('is_published', true)
-    .order('created_at', { ascending: false })
-    .limit(3);
+const LatestBlogs = () => {
+  const [posts, setPosts] = useState([]);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('blog')
+          .select('*')
+          .eq('is_published', true)
+          .order('created_at', { ascending: false })
+          .limit(3);
+
+        if (error) throw error;
+        setPosts(data || []);
+      } catch (err) {
+        console.error('Error fetching posts:', err);
+        setError(err.message);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (error) return null;
   if (!posts || posts.length === 0) return null;
 
   return (
