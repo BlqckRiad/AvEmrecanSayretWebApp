@@ -20,7 +20,17 @@ const services = [
     title: "İş Hukuku",
     description: "İşçi-işveren uyuşmazlıkları ve iş davalarında uzman kadromuzla çözüm odaklı hizmet sunuyoruz.",
     icon: "💼"
-  }
+  },
+  {
+    title: "İcra Hukuku ve Alacak Takibi",
+    description: "Alacak tahsili, icra takibi ve iflas süreçlerinde profesyonel hukuki destek sağlıyoruz.",
+    icon: "📊"
+  },
+  {
+    title: "Vergi Hukuku",
+    description: "Vergi uyuşmazlıkları, vergi denetimleri ve vergi planlaması konularında uzman hukuki danışmanlık hizmeti veriyoruz.",
+    icon: "💰"
+  },
 ];
 
 export default function Services() {
