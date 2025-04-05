@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ReactMarkdown from 'react-markdown';
 
 interface BlogPost {
   id: number;
@@ -153,10 +154,20 @@ export default function BlogDetail() {
             </div>
 
             {/* İçerik */}
-            <div className="blog-content-text">
-              {post.content.split('\n').map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
+            <div className="blog-content">
+              {post.content.includes('**') || 
+               post.content.includes('*') || 
+               post.content.includes('#') || 
+               post.content.includes('[') || 
+               post.content.includes('```') ? (
+                <ReactMarkdown>{post.content}</ReactMarkdown>
+              ) : (
+                <div className="blog-content-text">
+                  {post.content.split('\n').map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

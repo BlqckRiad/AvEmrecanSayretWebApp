@@ -9,6 +9,8 @@ import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 import ReactCrop, { Crop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+import MDEditor from '@uiw/react-md-editor';
+import ReactMarkdown from 'react-markdown';
 
 interface BlogPost {
   id: number;
@@ -626,13 +628,28 @@ export default function AdminBlog() {
 
                 <div className="admin-form-group">
                   <label className="admin-label">İçerik</label>
-                  <textarea
-                    className="admin-input"
-                    rows={10}
-                    value={formData.content}
-                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                    required
-                  />
+                  <div className="markdown-editor-container">
+                    <MDEditor
+                      value={formData.content}
+                      onChange={(value) => setFormData({ ...formData, content: value || '' })}
+                      height={400}
+                      preview="live"
+                    />
+                  </div>
+                  <div className="markdown-help">
+                    <h4>Markdown Kullanımı:</h4>
+                    <ul>
+                      <li><strong>Başlık:</strong> # Başlık 1, ## Başlık 2, ### Başlık 3</li>
+                      <li><strong>Kalın:</strong> **kalın metin**</li>
+                      <li><strong>İtalik:</strong> *italik metin*</li>
+                      <li><strong>Liste:</strong> - Madde 1</li>
+                      <li><strong>Numaralı Liste:</strong> 1. Madde 1</li>
+                      <li><strong>Link:</strong> [bağlantı metni](url)</li>
+                      <li><strong>Resim:</strong> ![alt metin](resim-url)</li>
+                      <li><strong>Alıntı:</strong> > Alıntı metni</li>
+                      <li><strong>Kod Bloğu:</strong> ```kod```</li>
+                    </ul>
+                  </div>
                 </div>
 
                 <div className="admin-form-group">
@@ -737,33 +754,38 @@ export default function AdminBlog() {
                 </h1>
                 
                 <div className="blog-preview-meta">
-                  <span className="blog-preview-meta-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                  <div className="blog-preview-meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                     {previewPost.author}
-                  </span>
-                  <span className="blog-preview-meta-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                  </div>
+                  <div className="blog-preview-meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     {new Date(previewPost.created_at).toLocaleDateString('tr-TR')}
-                  </span>
-                  <span className="blog-preview-meta-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                      <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-                    </svg>
-                    {previewPost.view_count} görüntülenme
-                  </span>
+                  </div>
                 </div>
 
                 <div className="blog-preview-summary">
                   {previewPost.summary}
                 </div>
-                
+
                 <div className="blog-preview-content">
-                  {previewPost.content}
+                  {previewPost.content.includes('**') || 
+                   previewPost.content.includes('*') || 
+                   previewPost.content.includes('#') || 
+                   previewPost.content.includes('[') || 
+                   previewPost.content.includes('```') ? (
+                    <ReactMarkdown>{previewPost.content}</ReactMarkdown>
+                  ) : (
+                    <div className="blog-content-text">
+                      {previewPost.content.split('\n').map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
