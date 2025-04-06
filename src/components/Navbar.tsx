@@ -7,27 +7,11 @@ import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [homepageUrl, setHomepageUrl] = useState('');
+  const [homepageUrl, setHomepageUrl] = useState('https://emrecansayret.com');
   const router = useRouter();
 
-  useEffect(() => {
-    // Ana sayfa URL'ini veritabanından al
-    const fetchHomepageUrl = async () => {
-      const { data, error } = await supabase
-        .from('website_info')
-        .select('homepage_url')
-        .single();
-
-      if (!error && data) {
-        setHomepageUrl(data.homepage_url);
-      }
-    };
-
-    fetchHomepageUrl();
-  }, []);
-
   const navigation = [
-    { name: 'Ana Sayfa', href: homepageUrl || '/' },
+    { name: 'Ana Sayfa', href: '/home' },
     { name: 'Hizmetlerimiz', href: '/hizmetlerimiz' },
     { name: 'Blog', href: '/blog' },
     { name: 'İletişim', href: '/iletisim' },
