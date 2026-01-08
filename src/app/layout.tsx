@@ -5,6 +5,9 @@ import { Providers } from "./providers";
 export const metadata: Metadata = {
   title: "Av. Emrecan Sayret | Hukuk Bürosu",
   description: "Av. Emrecan Sayret Hukuk Bürosu resmi web sitesi",
+  verification: {
+    google: "Y6xlbebs1Rgrg54dkCvaT4mL4Gst3Nry0BLb89yPHBo",
+  },
 };
 
 export default function RootLayout({
